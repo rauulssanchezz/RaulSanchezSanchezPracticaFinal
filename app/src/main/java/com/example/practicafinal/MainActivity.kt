@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         if (user!=null){
             //Especificar Intent
+            newintent=Intent(this, Inicio::class.java)
+            startActivity(newintent)
         }
 
         //Falta hacer las animaciones etc
@@ -85,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         user=auth.currentUser
-                        finish()
                     } else {
                         Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show()
                     }
