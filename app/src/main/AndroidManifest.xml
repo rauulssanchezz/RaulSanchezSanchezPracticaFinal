@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PracticaFinal"
         tools:targetApi="31">
         <activity
+            android:name=".AddCarta"
+            android:exported="false" />
+        <activity
             android:name=".InicioAdmin"
             android:exported="false" />
         <activity

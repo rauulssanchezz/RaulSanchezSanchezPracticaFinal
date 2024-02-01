@@ -41,4 +41,9 @@ class ComprobadorTipo : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }
