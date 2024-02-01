@@ -4,4 +4,8 @@
     <string name="email"></string>
     <string name="contraseña"></string>
     <string name="tipo"></string>
+    <string name="title_activity_navegacion">Navegacion</string>
+    <string name="title_home">Home</string>
+    <string name="title_añadir">Añadir</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

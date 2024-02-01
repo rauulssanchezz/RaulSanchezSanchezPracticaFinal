@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.example.practicafinal'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.practicafinal"
@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -45,6 +48,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.3.0'
     implementation 'com.google.android.gms:play-services-fido:20.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
