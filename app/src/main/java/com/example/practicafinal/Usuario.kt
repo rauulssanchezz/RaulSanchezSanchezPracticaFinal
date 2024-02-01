@@ -8,5 +8,5 @@ data class Usuario(
         var nombre:String="",
         var email:String="",
         var contraseña:String="",
-        var admin:String="cliente"
+        var tipo:String="cliente"
  ):Parcelable

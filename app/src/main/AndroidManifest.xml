@@ -13,7 +13,13 @@
         android:theme="@style/Theme.PracticaFinal"
         tools:targetApi="31">
         <activity
-            android:name=".Inicio"
+            android:name=".InicioAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".InicioCliente"
+            android:exported="false" />
+        <activity
+            android:name=".ComprobadorTipo"
             android:exported="false" />
         <activity
             android:name=".Register"

@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         if (user!=null){
             //Especificar Intent
-            newintent=Intent(this, Inicio::class.java)
+            newintent=Intent(this, ComprobadorTipo::class.java)
             startActivity(newintent)
         }
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         user=auth.currentUser
-                        newintent=Intent(this, Inicio::class.java)
+                        newintent=Intent(this, ComprobadorTipo::class.java)
                         startActivity(newintent)
                     } else {
                         Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show()

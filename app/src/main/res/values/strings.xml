@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PracticaFinal</string>
+    <string name="nombre"></string>
+    <string name="email"></string>
+    <string name="contraseña"></string>
+    <string name="tipo"></string>
 </resources>

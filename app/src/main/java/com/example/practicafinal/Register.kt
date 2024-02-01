@@ -64,8 +64,9 @@ class Register : AppCompatActivity() {
                         passwordEdit.setError("Las contraseñas no coinciden")
                         confirmPasswordEdit.setError("Las contraseñas no coinciden")
                     }
-                    if (passwordEdit.text!!.toString().length < 6) {
+                    if (passwordEdit.text!!.toString().length < 6 && confirmPasswordEdit.text!!.toString().length < 6) {
                         passwordEdit.setError("La contraseña debe contener al menos 6 caracteres")
+                        confirmPasswordEdit.setError("La contraseña debe contener al menos 6 caracteres")
                     }
                 }else{
                     email = emailEdit.text.toString()
