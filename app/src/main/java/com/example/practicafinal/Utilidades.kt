@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -75,8 +76,8 @@ class Utilidades {
             return usuario!!
         }
 
-        fun toastCourutine(activity: AppCompatActivity, contex: Context, text: String) {
-            activity.runOnUiThread {
+        fun toastCourutine(activity: Fragment, contex: Context, text: String) {
+            activity.requireActivity().runOnUiThread {
                 Toast.makeText(contex, text, Toast.LENGTH_SHORT).show()
             }
         }
