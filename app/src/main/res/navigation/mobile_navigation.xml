@@ -12,13 +12,18 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_add"
         android:name="com.example.practicafinal.ui.add.AddFragment"
         android:label="@string/title_añadir"
         tools:layout="@layout/fragment_add" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.practicafinal.ui.search.SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        android:id="@+id/navigation_eventos"
+        android:name="com.example.practicafinal.ui.eventos.EventosFragment"
+        tools:layout="@layout/fragment_eventos" />
+
+    <fragment
+        android:id="@+id/navigation_pedidos"
+        android:name="com.example.practicafinal.ui.pedidos.PedidosFragment"
+        tools:layout="@layout/fragment_pedidos" />
 </navigation>

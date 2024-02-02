@@ -1,13 +1,13 @@
-package com.example.practicafinal.ui.search
+package com.example.practicafinal.ui.pedidos
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
-class SearchViewModel : ViewModel() {
+class PedidosViewModel {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
+
 }

@@ -7,5 +7,6 @@
     <string name="title_activity_navegacion">Navegacion</string>
     <string name="title_home">Home</string>
     <string name="title_añadir">Añadir</string>
-    <string name="title_search">Buscar</string>
+    <string name="title_event">Eventos</string>
+    <string name="title_pedidos">Pedidos</string>
 </resources>

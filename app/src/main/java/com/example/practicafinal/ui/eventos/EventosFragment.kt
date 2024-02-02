@@ -1,4 +1,4 @@
-package com.example.practicafinal.ui.search
+package com.example.practicafinal.ui.eventos
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.Carta
 import com.example.practicafinal.CartaAdaptador
-import com.example.practicafinal.databinding.FragmentHomeBinding
-import com.example.practicafinal.databinding.FragmentSearchBinding
+import com.example.practicafinal.databinding.FragmentEventosBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class SearchFragment : Fragment() {
+class EventosFragment : Fragment() {
 
-    private var _binding: FragmentSearchBinding? = null
+    private var _binding: FragmentEventosBinding? = null
     private lateinit var recycler: RecyclerView
     private lateinit var lista: MutableList<Carta>
     private lateinit var adaptador: CartaAdaptador
@@ -28,7 +27,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentEventosBinding.inflate(inflater, container, false)
         val root: View = _binding!!.root
 
         var db_ref= FirebaseDatabase.getInstance().reference
