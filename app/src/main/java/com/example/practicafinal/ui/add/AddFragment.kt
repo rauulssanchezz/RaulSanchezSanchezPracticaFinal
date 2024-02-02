@@ -99,9 +99,9 @@ class AddFragment : Fragment(), CoroutineScope {
                     var carta = Carta(
                         generated_id!!,
                         nombreEdit.text.toString().trim().capitalize(),
-                        precioEdit.text.toString().trim(),
+                        "Precio: "+precioEdit.text.toString().trim(),
                         "Categoria: " + categoriaEdit.text.toString().trim().capitalize(),
-                        stockEdit.text.toString().trim(),
+                        "Stock: "+stockEdit.text.toString().trim(),
                         url_photo_firebase
                     )
                     Utilidades.crearCarta(db_ref,carta)
