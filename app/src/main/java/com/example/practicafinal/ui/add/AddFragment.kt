@@ -1,4 +1,4 @@
-package com.example.practicafinal.ui.dashboard
+package com.example.practicafinal.ui.add
 
 import android.content.Context
 import android.net.Uri
@@ -23,7 +23,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class add : Fragment(), CoroutineScope {
+class AddFragment : Fragment(), CoroutineScope {
     private lateinit var fotoEdit: ImageView
     private lateinit var nombreEdit: TextInputEditText
     private lateinit var categoriaEdit: TextInputEditText

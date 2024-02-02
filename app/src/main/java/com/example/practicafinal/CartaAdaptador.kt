@@ -49,6 +49,31 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
     override fun getItemCount(): Int = filter_list.size
 
     override fun getFilter(): Filter {
-        TODO("Not yet implemented")
+        return  object : Filter(){
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                val search = p0.toString().lowercase()
+
+                if (search.isEmpty()){
+                    filter_list = lista
+                }else {
+                    filter_list = (lista.filter {
+                        if (it.nombre.toString().lowercase().contains(search)){
+                            it.nombre.toString().lowercase().contains(search)
+                        }else{
+                            it.categoria.toString().lowercase().contains(search)
+                        }
+                    }) as MutableList<Carta>
+                }
+
+                val filterResults = FilterResults()
+                filterResults.values = filter_list
+                return filterResults
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                notifyDataSetChanged()
+            }
+
+        }
     }
 }

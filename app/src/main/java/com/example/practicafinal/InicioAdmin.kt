@@ -4,14 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.databinding.ActivityInicioAdminBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class InicioAdmin : AppCompatActivity() {
-    private lateinit var recycler: RecyclerView
-    private lateinit var lista: MutableList<Carta>
-    private lateinit var adaptador: CartaAdaptador
     private lateinit var binding: ActivityInicioAdminBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
