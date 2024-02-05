@@ -1,15 +1,20 @@
 package com.example.practicafinal.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.Carta
 import com.example.practicafinal.CartaAdaptador
+import com.example.practicafinal.MainActivity
+import com.example.practicafinal.R
 import com.example.practicafinal.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,6 +37,7 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         var db_ref= FirebaseDatabase.getInstance().reference
+        var user = FirebaseAuth.getInstance()
         lista= mutableListOf<Carta>()
 
         db_ref.child("Cartas")
@@ -57,6 +63,27 @@ class HomeFragment : Fragment() {
         recycler.adapter = adaptador
         recycler.layoutManager = LinearLayoutManager(applicationcontext)
         recycler.setHasFixedSize(true)
+
+        _binding!!.settings.setOnClickListener {
+            val popupMenu = PopupMenu(context, it)
+
+            popupMenu.inflate(R.menu.popup_menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.log_out -> {
+                        // Handle item1 click
+                        user.signOut()
+                        var newIntent= Intent(context, MainActivity::class.java)
+                        startActivity(newIntent)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
 
         return _binding!!.root
     }
