@@ -1,5 +1,6 @@
 package com.example.practicafinal
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
@@ -76,8 +77,8 @@ class Utilidades {
             return usuario!!
         }
 
-        fun toastCourutine(activity: Fragment, contex: Context, text: String) {
-            activity.requireActivity().runOnUiThread {
+        fun toastCourutine(activity: Activity, contex: Context, text: String) {
+            activity.runOnUiThread {
                 Toast.makeText(contex, text, Toast.LENGTH_SHORT).show()
             }
         }

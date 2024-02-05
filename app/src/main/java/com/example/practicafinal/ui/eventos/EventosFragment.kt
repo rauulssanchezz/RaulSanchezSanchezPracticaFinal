@@ -33,22 +33,6 @@ class EventosFragment : Fragment() {
         var db_ref= FirebaseDatabase.getInstance().reference
         lista= mutableListOf<Carta>()
 
-        var searchView = _binding!!.searchView
-
-        searchView.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adaptador.filter.filter((newText))
-                return true
-            }
-
-        })
-
         db_ref.child("Cartas")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

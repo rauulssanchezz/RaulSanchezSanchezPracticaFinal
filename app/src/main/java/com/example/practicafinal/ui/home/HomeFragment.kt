@@ -9,6 +9,7 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.practicafinal.Add_carta
 import com.example.practicafinal.Carta
 import com.example.practicafinal.CartaAdaptador
 import com.example.practicafinal.MainActivity
@@ -62,7 +63,6 @@ class HomeFragment : Fragment() {
         recycler = _binding!!.recyclerView
         recycler.adapter = adaptador
         recycler.layoutManager = LinearLayoutManager(applicationcontext)
-        recycler.setHasFixedSize(true)
 
         _binding!!.settings.setOnClickListener {
             val popupMenu = PopupMenu(context, it)
@@ -83,6 +83,13 @@ class HomeFragment : Fragment() {
                 }
             }
             popupMenu.show()
+        }
+
+        _binding!!.add.setOnClickListener {
+
+            var newIntent= Intent(context, Add_carta::class.java)
+            startActivity(newIntent)
+
         }
 
         return _binding!!.root
