@@ -56,7 +56,7 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
             popup.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.editar->{
-                        var newIntent= Intent(context, EditarCarta::class.java)
+                        var newIntent= Intent(context, EditEventos::class.java)
                         newIntent.putExtra("evento",actual_item)
                         context.startActivity(newIntent)
                         true
