@@ -11,6 +11,8 @@
     <ImageView
         android:id="@+id/photo_item_evento"
         android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
         android:layout_height="100dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
