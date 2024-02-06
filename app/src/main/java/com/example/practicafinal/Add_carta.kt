@@ -67,27 +67,22 @@ class Add_carta : AppCompatActivity(), CoroutineScope {
                 Toast.makeText(applicationContext, "Falta seleccionar la foto", Toast.LENGTH_SHORT
                 ).show()
             }else if(Utilidades.existeCarta(carta_list, nombreLayout.text.toString().trim())){
-                Toast.makeText(applicationContext, "Esa clinica ya existe", Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "Esa carta ya existe", Toast.LENGTH_SHORT)
                     .show()
             }else{
-                var generated_id:String?=db_ref.child("AnimalHealth").child("clinics").push().key
+                var generated_id:String?=db_ref.child("Cartas").push().key
 
 
                 launch {
                     val url_photo_firebase= Utilidades.guardarFoto(generated_id!!, url_photo!!)
 
-                    val androidId= Settings.Secure.getString(
-                        applicationContext.contentResolver,
-                        Settings.Secure.ANDROID_ID
-                    )
-
                     var carta= Carta(
                         generated_id,
                         nombreLayout.text.toString().trim().capitalize(),
-                        "c/ "+categoriaLayout.text.toString().trim().capitalize(),
-                        url_photo_firebase,
                         precioLayout.text.toString().trim().capitalize(),
+                        categoriaLayout.text.toString().trim().capitalize(),
                         stockLayout.text.toString().trim().capitalize(),
+                        url_photo_firebase
                     )
                     Utilidades.crearCarta(db_ref, carta)
 
@@ -98,7 +93,7 @@ class Add_carta : AppCompatActivity(), CoroutineScope {
                         "Clinica creada con exito"
                     )
 
-                    val newIntent= Intent(applicationContext, HomeFragment::class.java)
+                    val newIntent= Intent(applicationContext, InicioAdmin::class.java)
                     startActivity(newIntent)
 
                 }

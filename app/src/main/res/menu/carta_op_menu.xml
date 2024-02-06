@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/editar"
+        android:orderInCategory="100"
+        android:src="@drawable/editar"
+        android:title="Editar" />
+
+    <item
+        android:id="@+id/eliminar"
+        android:orderInCategory="100"
+        android:src="@drawable/borrar"
+        android:title="Borrar" />
+
+</menu>

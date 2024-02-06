@@ -1,15 +1,22 @@
 package com.example.practicafinal
 
 import android.content.Context
+import android.content.Intent
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.practicafinal.ui.home.HomeFragment
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter<CartaAdaptador.CartaViewHolder>(),
     Filterable {
@@ -42,8 +49,37 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
             else->actual_item.imagen
         }
 
-        Glide.with(context).load(URL).apply(Utilidades.glideOptions(context)).transition(Utilidades.transition).into(holder.foto)
+        holder.itemView.setOnLongClickListener {
+            val popup = PopupMenu(context,holder.itemView)
 
+            popup.inflate(R.menu.carta_op_menu)
+
+            popup.setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.editar->{
+                        var newIntent= Intent(context, EditarCarta::class.java)
+                        newIntent.putExtra("carta",actual_item)
+                        context.startActivity(newIntent)
+                        true
+                    }
+                    R.id.eliminar->{
+                        val db_ref = FirebaseDatabase.getInstance().getReference()
+                        val sto_ref = FirebaseStorage.getInstance().getReference()
+
+                        filter_list.remove(actual_item)
+                            sto_ref.child("Cartas").child("photos").child(actual_item.id!!).delete()
+                            db_ref.child("Cartas").child(actual_item.id!!).removeValue()
+                            Toast.makeText(context,"Carta borrada con exito", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else->false
+                }
+            }
+            popup.show()
+            true
+        }
+
+        Glide.with(context).load(URL).apply(Utilidades.glideOptions(context)).transition(Utilidades.transition).into(holder.foto)
     }
 
     override fun getItemCount(): Int = filter_list.size
