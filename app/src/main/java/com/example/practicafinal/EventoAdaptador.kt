@@ -2,7 +2,6 @@ package com.example.practicafinal
 
 import android.content.Context
 import android.content.Intent
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,38 +12,36 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.PopupMenuCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.practicafinal.ui.home.HomeFragment
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
-class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter<CartaAdaptador.CartaViewHolder>(),
+class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adapter<EventoAdaptador.EventoViewHolder>(),
     Filterable {
 
     private lateinit var context: Context
     private var filter_list=lista
-    class CartaViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        val foto=item.findViewById<ImageView>(R.id.photo_item)
-        val nombre=item.findViewById<TextView>(R.id.name_item)
-        val precio=item.findViewById<TextView>(R.id.precio_item)
-        val categoria=item.findViewById<TextView>(R.id.categoria_item)
-        val stock=item.findViewById<TextView>(R.id.stock_item)
+    class EventoViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+        val foto=item.findViewById<ImageView>(R.id.photo_item_evento)
+        val nombre=item.findViewById<TextView>(R.id.name_item_evento)
+        val precio=item.findViewById<TextView>(R.id.precio_item_evento)
+        val fecha=item.findViewById<TextView>(R.id.fecha_item_evento)
+        val aforo=item.findViewById<TextView>(R.id.aforo_item_evento)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartaViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventoViewHolder {
         val item_view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_carta, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_evento, parent, false)
         context = parent.context
-        return CartaViewHolder(item_view)
+        return EventoViewHolder(item_view)
     }
 
-    override fun onBindViewHolder(holder: CartaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EventoViewHolder, position: Int) {
         val actual_item=filter_list[position]
         holder.nombre.text=actual_item.nombre
-        holder.categoria.text="Categoria: "+actual_item.categoria
+        holder.fecha.text="Fecha: "+actual_item.fecha
         holder.precio.text="Precio: "+actual_item.precio
-        holder.stock.text="Stock: "+actual_item.stock
+        holder.aforo.text="Aforo: "+actual_item.aforo_maximo
 
         val URL:String? = when (actual_item.imagen){
             ""->null
@@ -60,7 +57,7 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
                 when(it.itemId){
                     R.id.editar->{
                         var newIntent= Intent(context, EditarCarta::class.java)
-                        newIntent.putExtra("carta",actual_item)
+                        newIntent.putExtra("evento",actual_item)
                         context.startActivity(newIntent)
                         true
                     }
@@ -69,9 +66,9 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
                         val sto_ref = FirebaseStorage.getInstance().getReference()
 
                         filter_list.remove(actual_item)
-                            sto_ref.child("Cartas").child("photos").child(actual_item.id!!).delete()
-                            db_ref.child("Cartas").child(actual_item.id!!).removeValue()
-                            Toast.makeText(context,"Carta borrada con exito", Toast.LENGTH_SHORT).show()
+                        sto_ref.child("Eventos").child("photos").child(actual_item.id!!).delete()
+                        db_ref.child("Eventos").child(actual_item.id!!).removeValue()
+                        Toast.makeText(context,"Evento borrado con exito", Toast.LENGTH_SHORT).show()
                         true
                     }
                     else->false
@@ -99,31 +96,6 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
     override fun getItemCount(): Int = filter_list.size
 
     override fun getFilter(): Filter {
-        return  object : Filter(){
-            override fun performFiltering(p0: CharSequence?): FilterResults {
-                val search = p0.toString().lowercase()
-
-                if (search.isEmpty()){
-                    filter_list = lista
-                }else {
-                    filter_list = (lista.filter {
-                        if (it.nombre.toString().lowercase().contains(search)){
-                            it.nombre.toString().lowercase().contains(search)
-                        }else{
-                            it.categoria.toString().lowercase().contains(search)
-                        }
-                    }) as MutableList<Carta>
-                }
-
-                val filterResults = FilterResults()
-                filterResults.values = filter_list
-                return filterResults
-            }
-
-            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                notifyDataSetChanged()
-            }
-
-        }
+        TODO("Not implemented")
     }
 }

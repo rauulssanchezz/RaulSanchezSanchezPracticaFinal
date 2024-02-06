@@ -30,8 +30,12 @@ class Utilidades {
             dtb_ref.child("Usuarios").child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(usuario)
         }
 
-        fun existeCarta(clinic: List<Carta>, name: String): Boolean {
-            return clinic.any { it.nombre!!.lowercase() == name.lowercase() }
+        fun existeCarta(cartas: List<Carta>, name: String): Boolean {
+            return cartas.any { it.nombre!!.lowercase() == name.lowercase() }
+        }
+
+        fun existeEvento(eventos: List<Evento>, name: String): Boolean {
+            return eventos.any { it.nombre!!.lowercase() == name.lowercase() }
         }
 
         fun obtenerCartas(dtb_ref:DatabaseReference): MutableList<Carta> {
@@ -53,14 +57,46 @@ class Utilidades {
             return list
         }
 
+        fun obtenerEventos(dtb_ref:DatabaseReference): MutableList<Evento> {
+            var list = mutableListOf<Evento>()
+
+            dtb_ref.child("Eventos")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach { child: DataSnapshot ->
+                            val pojo_evento = child.getValue(Evento::class.java)
+                            list.add(pojo_evento!!)
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        println(error.message)
+                    }
+                })
+            return list
+        }
+
         fun crearCarta(dtb_ref:DatabaseReference,carta: Carta){
             dtb_ref.child("Cartas").child(carta.id).setValue(carta)
+        }
+
+        fun crearEvento(dtb_ref:DatabaseReference,evento: Evento){
+            dtb_ref.child("Eventos").child(evento.id).setValue(evento)
         }
 
         suspend fun guardarFoto(id: String, image: Uri): String {
             lateinit var url_photo_firebase: Uri
             var sto_ref: StorageReference = FirebaseStorage.getInstance().reference
             url_photo_firebase = sto_ref.child("Cartas").child("photos").child(id)
+                .putFile(image).await().storage.downloadUrl.await()
+
+            return url_photo_firebase.toString()
+        }
+
+        suspend fun guardarFotoEvento(id: String, image: Uri): String {
+            lateinit var url_photo_firebase: Uri
+            var sto_ref: StorageReference = FirebaseStorage.getInstance().reference
+            url_photo_firebase = sto_ref.child("Eventos").child("photos").child(id)
                 .putFile(image).await().storage.downloadUrl.await()
 
             return url_photo_firebase.toString()
