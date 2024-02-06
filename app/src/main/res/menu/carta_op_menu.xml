@@ -3,14 +3,12 @@
 
     <item
         android:id="@+id/editar"
-        android:orderInCategory="100"
-        android:src="@drawable/editar"
+        android:icon="@drawable/editar"
         android:title="Editar" />
 
     <item
         android:id="@+id/eliminar"
-        android:orderInCategory="100"
-        android:src="@drawable/borrar"
+        android:icon="@drawable/borrar"
         android:title="Borrar" />
 
 </menu>
