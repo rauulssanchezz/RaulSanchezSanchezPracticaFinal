@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.practicafinal.Carta
 import com.example.practicafinal.R
+import com.example.practicafinal.R.array
 import com.example.practicafinal.Utilidades
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DatabaseReference
@@ -61,7 +62,7 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
         stock = findViewById(R.id.add_stock)
         stock.setText(carta.stock)
         categoriaLayout = findViewById(R.id.add_categoria)
-        array = R.array.categorias as Array<String>
+        array = resources.getStringArray(R.array.categorias)
         pos = array.indexOf(carta.categoria)
         categoriaLayout.setSelection(pos)
         guardar = findViewById(R.id.guardar)

@@ -2,6 +2,7 @@ package com.example.practicafinal
 
 import android.content.Context
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -49,46 +50,58 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
             else->actual_item.imagen
         }
 
-        holder.itemView.setOnLongClickListener {
-            val popup = PopupMenu(context,holder.itemView)
+        var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        var tipo = sharedPreferences.getString("tipo", "cliente")
 
-            popup.inflate(R.menu.carta_op_menu)
+        if (tipo.equals("cliente",true)){
+            holder.itemView.setOnLongClickListener {
+                false
+            }
+        }else {
+            holder.itemView.setOnLongClickListener {
+                val popup = PopupMenu(context, holder.itemView)
 
-            popup.setOnMenuItemClickListener {
-                when(it.itemId){
-                    R.id.editar->{
-                        var newIntent= Intent(context, EditarCarta::class.java)
-                        newIntent.putExtra("carta",actual_item)
-                        context.startActivity(newIntent)
-                        true
-                    }
-                    R.id.eliminar->{
-                        val db_ref = FirebaseDatabase.getInstance().getReference()
-                        val sto_ref = FirebaseStorage.getInstance().getReference()
+                popup.inflate(R.menu.carta_op_menu)
 
-                        filter_list.remove(actual_item)
+                popup.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.editar -> {
+                            var newIntent = Intent(context, EditarCarta::class.java)
+                            newIntent.putExtra("carta", actual_item)
+                            context.startActivity(newIntent)
+                            true
+                        }
+
+                        R.id.eliminar -> {
+                            val db_ref = FirebaseDatabase.getInstance().getReference()
+                            val sto_ref = FirebaseStorage.getInstance().getReference()
+
+                            filter_list.remove(actual_item)
                             sto_ref.child("Cartas").child("photos").child(actual_item.id!!).delete()
                             db_ref.child("Cartas").child(actual_item.id!!).removeValue()
-                            Toast.makeText(context,"Carta borrada con exito", Toast.LENGTH_SHORT).show()
-                        true
+                            Toast.makeText(context, "Carta borrada con exito", Toast.LENGTH_SHORT)
+                                .show()
+                            true
+                        }
+
+                        else -> false
                     }
-                    else->false
                 }
-            }
-            try {
-                val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
-                fieldMPopup.isAccessible = true
-                val mPopup = fieldMPopup.get(popup)
-                mPopup.javaClass
-                    .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-                    .invoke(mPopup, true)
-            } catch (e: Exception){
-                Log.e("Main", "Error showing menu icons.", e)
-            } finally {
-                popup.show()
-            }
+                try {
+                    val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                    fieldMPopup.isAccessible = true
+                    val mPopup = fieldMPopup.get(popup)
+                    mPopup.javaClass
+                        .getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                        .invoke(mPopup, true)
+                } catch (e: Exception) {
+                    Log.e("Main", "Error showing menu icons.", e)
+                } finally {
+                    popup.show()
+                }
 //            popup.show()
-            true
+                true
+            }
         }
 
         Glide.with(context).load(URL).apply(Utilidades.glideOptions(context)).transition(Utilidades.transition).into(holder.foto)

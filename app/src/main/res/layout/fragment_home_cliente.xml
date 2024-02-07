@@ -45,10 +45,28 @@
             android:layout_marginEnd="15dp"
             android:layout_marginTop="15dp"
             />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/filtrarCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/settings"
+            app:layout_constraintTop_toBottomOf="@id/settings"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="15dp"
+            >
+            <TextView
+                android:id="@+id/filtrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="FILTRAR"
+                />
+        </androidx.cardview.widget.CardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            app:layout_constraintTop_toBottomOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/filtrarCard"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
