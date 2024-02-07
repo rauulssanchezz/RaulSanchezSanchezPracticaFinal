@@ -3,6 +3,7 @@ package com.example.practicafinal
 import android.content.Context
 import android.content.Intent
 import android.preference.PreferenceManager
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -69,8 +70,12 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
                 val user = FirebaseAuth.getInstance().currentUser?.uid
                 val id = db_ref.push().key
                 actual_item.stock=(actual_item.stock.toInt()-1).toString()
+                val androidId= Settings.Secure.getString(
+                    context.contentResolver,
+                    Settings.Secure.ANDROID_ID
+                )
                 db_ref.child("Cartas").child(actual_item.id).setValue(actual_item)
-                val pedido=Pedido(id!!, user!!, actual_item.id, "pendiente", actual_item.precio, actual_item.nombre)
+                val pedido=Pedido(id!!, user!!, actual_item.id, "pendiente", actual_item.precio, actual_item.nombre,Estado_not.creado,androidId)
                 Utilidades.crearPedido(db_ref, pedido)
             }
 

@@ -11,4 +11,6 @@ data class Pedido (
     var estado: String = "",
     var precio: String = "",
     var nombre: String = "",
+    var not_state:Int?=null,
+    var userNotifications:String?=null
 ):Parcelable

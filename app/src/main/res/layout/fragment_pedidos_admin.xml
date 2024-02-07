@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_carta"
+        tools:listitem="@layout/item_pedido"
         android:padding="4dp"
         android:layout_marginBottom="70dp"
         />

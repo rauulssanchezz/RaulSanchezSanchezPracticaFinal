@@ -2,6 +2,7 @@ package com.example.practicafinal
 
 import android.content.Context
 import android.preference.PreferenceManager
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,18 +48,22 @@ class PedidosAdaptador(private val lista:MutableList<Pedido>) : RecyclerView.Ada
         }else if(tipo.equals("admin") && actual_item.estado=="pendiente") {
             holder.estadoFoto.setImageResource(R.drawable.aprobar)
             holder.estadoFoto.setOnClickListener {
+                val androidId= Settings.Secure.getString(
+                    context.contentResolver,
+                    Settings.Secure.ANDROID_ID
+                )
                 var pedido=Pedido(
                     actual_item.id,
                     actual_item.id_cliente,
                     actual_item.id_producto,
                     "confirmada",
                     actual_item.precio,
-                    actual_item.nombre
-
+                    actual_item.nombre,
+                    Estado_not.modificado,
+                    androidId
                 )
-                val database = FirebaseDatabase.getInstance()
-                val myRef = database.getReference("pedidos")
-                myRef.child(actual_item.id).setValue(pedido)
+                val database = FirebaseDatabase.getInstance().reference
+                Utilidades.crearPedido(database,pedido)
                 Toast.makeText(context, "Pedido confirmado", Toast.LENGTH_SHORT).show()
             }
         }else{
@@ -71,4 +76,5 @@ class PedidosAdaptador(private val lista:MutableList<Pedido>) : RecyclerView.Ada
     override fun getFilter(): Filter {
         TODO("Not implemented")
     }
+
 }
