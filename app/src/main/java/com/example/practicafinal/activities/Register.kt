@@ -1,13 +1,14 @@
-package com.example.practicafinal
+package com.example.practicafinal.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.practicafinal.R
+import com.example.practicafinal.Utilidades
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 
 class Register : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class Register : AppCompatActivity() {
     }
 
     private fun inicializarVariables(){
-        auth=FirebaseAuth.getInstance()
+        auth= FirebaseAuth.getInstance()
         user=auth.currentUser
         emailEdit=findViewById<TextInputEditText>(R.id.user)
         passwordEdit=findViewById<TextInputEditText>(R.id.password)

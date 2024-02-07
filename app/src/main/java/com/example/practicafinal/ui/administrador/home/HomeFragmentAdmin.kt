@@ -1,4 +1,4 @@
-package com.example.practicafinal.ui.home
+package com.example.practicafinal.ui.administrador.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,21 +9,22 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.practicafinal.Add_carta
+import com.example.practicafinal.activities.administrador.Add_carta
 import com.example.practicafinal.Carta
 import com.example.practicafinal.CartaAdaptador
-import com.example.practicafinal.MainActivity
+import com.example.practicafinal.activities.MainActivity
 import com.example.practicafinal.R
-import com.example.practicafinal.databinding.FragmentHomeBinding
+import com.example.practicafinal.activities.Autor
+import com.example.practicafinal.databinding.FragmentHomeAdminBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class HomeFragment : Fragment() {
+class HomeFragmentAdmin : Fragment() {
     private lateinit var recycler: RecyclerView
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentHomeAdminBinding? = null
     private lateinit var lista: MutableList<Carta>
     private lateinit var adaptador: CartaAdaptador
     private var applicationcontext = this.context
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
         var db_ref= FirebaseDatabase.getInstance().reference
         var user = FirebaseAuth.getInstance()
         lista= mutableListOf<Carta>()
@@ -75,6 +76,12 @@ class HomeFragment : Fragment() {
                         // Handle item1 click
                         user.signOut()
                         var newIntent= Intent(context, MainActivity::class.java)
+                        startActivity(newIntent)
+                        true
+                    }
+
+                    R.id.autor -> {
+                        var newIntent= Intent(context, Autor::class.java)
                         startActivity(newIntent)
                         true
                     }

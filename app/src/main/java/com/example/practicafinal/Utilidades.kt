@@ -34,8 +34,8 @@ class Utilidades {
             return cartas.any { it.nombre!!.lowercase() == name.lowercase() }
         }
 
-        fun existeEvento(eventos: List<Evento>, name: String): Boolean {
-            return eventos.any { it.nombre!!.lowercase() == name.lowercase() }
+        fun existeEvento(eventos: List<Evento>, name: String,fecha:String): Boolean {
+            return eventos.any { it.nombre!!.lowercase() == name.lowercase() && it.fecha!! == fecha }
         }
 
         fun obtenerCartas(dtb_ref:DatabaseReference): MutableList<Carta> {

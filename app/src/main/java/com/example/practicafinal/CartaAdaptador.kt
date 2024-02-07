@@ -2,7 +2,6 @@ package com.example.practicafinal
 
 import android.content.Context
 import android.content.Intent
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +12,9 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.PopupMenuCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.practicafinal.ui.home.HomeFragment
+import com.example.practicafinal.activities.administrador.EditarCarta
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 

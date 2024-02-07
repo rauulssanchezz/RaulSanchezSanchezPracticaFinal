@@ -1,12 +1,13 @@
-package com.example.practicafinal
+package com.example.practicafinal.activities
 
 import android.content.Intent
 import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.practicafinal.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun inicializarVariables(){
-        auth=FirebaseAuth.getInstance()
+        auth= FirebaseAuth.getInstance()
         user=auth.currentUser
         emailEdit=findViewById<TextInputEditText>(R.id.user)
         passwordEdit=findViewById<TextInputEditText>(R.id.password)
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         if (user!=null){
             //Especificar Intent
-            newintent=Intent(this, ComprobadorTipo::class.java)
+            newintent= Intent(this, ComprobadorTipo::class.java)
             startActivity(newintent)
         }
 
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             //Animation.animation(register, 0.98f, 1.0f, 100)
             //register.setTextColor(getColor(R.color.softblack))
             //register.postDelayed({ register.setTextColor(getColor(R.color.black)) }, 300)
-            newintent=Intent(this, Register::class.java)
+            newintent= Intent(this, Register::class.java)
             startActivity(newintent)
         }
 
@@ -87,10 +88,11 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         user=auth.currentUser
-                        newintent=Intent(this, ComprobadorTipo::class.java)
+                        newintent= Intent(this, ComprobadorTipo::class.java)
                         startActivity(newintent)
                     } else {
-                        Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Usuario o contraseña incorrectas", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
