@@ -13,9 +13,11 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.practicafinal.activities.administrador.EditarCarta
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
@@ -30,6 +32,10 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
         val precio=item.findViewById<TextView>(R.id.precio_item)
         val categoria=item.findViewById<TextView>(R.id.categoria_item)
         val stock=item.findViewById<TextView>(R.id.stock_item)
+        val añadir_carrito=item.findViewById<CardView>(R.id.añadir_carrito)
+        val procesar=item.findViewById<CardView>(R.id.procesar)
+        val confirmada=item.findViewById<ImageView>(R.id.confirmada)
+        val pendiente=item.findViewById<ImageView>(R.id.pendiente)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartaViewHolder {
         val item_view =
@@ -39,25 +45,59 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: CartaViewHolder, position: Int) {
-        val actual_item=filter_list[position]
-        holder.nombre.text=actual_item.nombre
-        holder.categoria.text="Categoria: "+actual_item.categoria
-        holder.precio.text="Precio: "+actual_item.precio
-        holder.stock.text="Stock: "+actual_item.stock
+        val actual_item = filter_list[position]
+        holder.nombre.text = actual_item.nombre
+        holder.categoria.text = "Categoria: " + actual_item.categoria
+        holder.precio.text = "Precio: " + actual_item.precio
+        holder.stock.text = "Stock: " + actual_item.stock
 
-        val URL:String? = when (actual_item.imagen){
-            ""->null
-            else->actual_item.imagen
+        val URL: String? = when (actual_item.imagen) {
+            "" -> null
+            else -> actual_item.imagen
         }
 
         var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         var tipo = sharedPreferences.getString("tipo", "cliente")
 
-        if (tipo.equals("cliente",true)){
+        if (tipo.equals("cliente", true) && !actual_item.comprada) {
+            holder.añadir_carrito.visibility = View.VISIBLE
+
             holder.itemView.setOnLongClickListener {
                 false
             }
-        }else {
+
+            holder.añadir_carrito.setOnClickListener {
+                val db_ref = FirebaseDatabase.getInstance().getReference()
+                val user = FirebaseAuth.getInstance().currentUser?.uid
+                val id = db_ref.push().key
+                actual_item.stock = (actual_item.stock.toInt() - 1).toString()
+                db_ref.child("Cartas").child(actual_item.id).setValue(actual_item)
+                actual_item.comprada = true
+                actual_item.idComprador=user.toString()
+                db_ref.child("Compras").child(id!!).setValue(actual_item)
+                Toast.makeText(context, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+            }
+
+        } else if (tipo.equals("admin", true) && actual_item.comprada && !actual_item.procesada) {
+
+            holder.procesar.visibility = View.VISIBLE
+            holder.stock.visibility = View.GONE
+            holder.procesar.setOnClickListener {
+                val db_ref = FirebaseDatabase.getInstance().getReference()
+                actual_item.procesada = true
+                db_ref.child("Compras").child(actual_item.id).setValue(actual_item)
+                Toast.makeText(context, "Carta procesada", Toast.LENGTH_SHORT).show()
+            }
+
+        }else if (tipo.equals("cliente", true) && actual_item.comprada && !actual_item.procesada) {
+            holder.pendiente.visibility = View.VISIBLE
+            holder.stock.visibility = View.GONE
+
+        }else if ( actual_item.comprada && actual_item.procesada) {
+            holder.confirmada.visibility = View.VISIBLE
+            holder.stock.visibility = View.GONE
+
+        }else{
             holder.itemView.setOnLongClickListener {
                 val popup = PopupMenu(context, holder.itemView)
 
