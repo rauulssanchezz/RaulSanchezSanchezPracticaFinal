@@ -3,8 +3,11 @@ package com.example.practicafinal.activities.administrador
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -29,9 +32,12 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
     private lateinit var nombre: TextInputEditText
     private lateinit var precio: TextInputEditText
     private lateinit var stock: TextInputEditText
-    private lateinit var categoria: TextInputEditText
+    private lateinit var categoriaLayout: Spinner
     private lateinit var photo: ImageView
     private lateinit var guardar: Button
+    private var categoria: String? = null
+    private lateinit var  array : Array<String>
+    private var pos=0
 
     private var url_photo: Uri? = null
     private lateinit var db_ref: DatabaseReference
@@ -54,10 +60,11 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
         precio.setText(carta.precio)
         stock = findViewById(R.id.add_stock)
         stock.setText(carta.stock)
-        categoria = findViewById(R.id.add_categoria)
-        categoria.setText(carta.categoria)
+        categoriaLayout = findViewById(R.id.add_categoria)
+        array = R.array.categorias as Array<String>
+        pos = array.indexOf(carta.categoria)
+        categoriaLayout.setSelection(pos)
         guardar = findViewById(R.id.guardar)
-
         photo = findViewById(R.id.add_image)
 
         Glide.with(applicationContext)
@@ -71,10 +78,32 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
 
         carta_list = Utilidades.obtenerCartas(db_ref)
 
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.categorias,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears.
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner.
+            categoriaLayout.adapter = adapter
+        }
+
+        categoriaLayout.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                categoria = parent?.getItemAtPosition(position).toString()
+                categoriaLayout.setSelection(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // write code to perform some action
+            }
+        }
+
         guardar.setOnClickListener {
 
             if (nombre.text.toString().trim().isEmpty() ||
-                categoria.text.toString().trim().isEmpty() || precio.text.toString().trim()
+                categoria==null || precio.text.toString().trim()
                     .isEmpty() || stock.text.toString().trim().isEmpty()
             ) {
 
@@ -83,12 +112,7 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
                             "formularion", Toast.LENGTH_SHORT
                 ).show()
 
-            } else if(!categoria.text.toString().trim().toLowerCase().equals("blanco") || !categoria.text.toString().trim().toLowerCase().equals("negro")
-                || !categoria.text.toString().trim().toLowerCase().equals("azul") || !categoria.text.toString().trim().toLowerCase().equals("rojo") || !categoria.text.toString().trim().toLowerCase().equals("verde") ) {
-
-                categoria.setError("Categoria incorrecta")
-
-            }else if (Utilidades.existeCarta(
+            } else if (Utilidades.existeCarta(
                     carta_list,
                     nombre.text.toString().trim()
                 ) && !nombre.text.toString().trim().equals(beforeName)
@@ -115,8 +139,8 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
                         carta.id!!,
                         nombre.text.toString().trim().capitalize(),
                         precio.text.toString().trim().capitalize(),
+                        categoria!!,
                         stock.text.toString().trim().capitalize(),
-                        categoria.text.toString().trim().capitalize(),
                         url_photo_firebase,
 
                         )

@@ -3,8 +3,11 @@ package com.example.practicafinal.activities.administrador
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -25,11 +28,12 @@ import kotlin.coroutines.CoroutineContext
 class Add_carta : AppCompatActivity(), CoroutineScope {
 
     private lateinit var nombreLayout: TextInputEditText
-    private lateinit var categoriaLayout: TextInputEditText
+    private lateinit var categoriaLayout: Spinner
     private lateinit var precioLayout: TextInputEditText
     private lateinit var stockLayout: TextInputEditText
     private lateinit var photo: ImageView
     private lateinit var add: Button
+    private var categoria: String?=null
 
     private var url_photo: Uri?=null
     private lateinit var db_ref: DatabaseReference
@@ -55,10 +59,31 @@ class Add_carta : AppCompatActivity(), CoroutineScope {
 
         carta_list= Utilidades.obtenerCartas(db_ref)
 
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.categorias,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears.
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner.
+            categoriaLayout.adapter = adapter
+        }
+
+        categoriaLayout.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                categoria = parent?.getItemAtPosition(position).toString()
+                categoriaLayout.setSelection(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // write code to perform some action
+            }
+        }
 
         add.setOnClickListener {
 
-            if (nombreLayout.text.toString().trim().isEmpty()||categoriaLayout.text.toString().trim().isEmpty() || precioLayout.text.toString().trim().isEmpty() || stockLayout.text.toString().trim().isEmpty()){
+            if (nombreLayout.text.toString().trim().isEmpty()||categoria==null || precioLayout.text.toString().trim().isEmpty() || stockLayout.text.toString().trim().isEmpty()){
                 Toast.makeText(applicationContext, "Faltan campos por rellenar", Toast.LENGTH_SHORT)
                     .show()
             }else if(url_photo==null){
@@ -68,11 +93,6 @@ class Add_carta : AppCompatActivity(), CoroutineScope {
             }else if(Utilidades.existeCarta(carta_list, nombreLayout.text.toString().trim())){
                 Toast.makeText(applicationContext, "Esa carta ya existe", Toast.LENGTH_SHORT)
                     .show()
-            }else if(!categoriaLayout.text.toString().trim().toLowerCase().equals("blanco") || !categoriaLayout.text.toString().trim().toLowerCase().equals("negro")
-                || !categoriaLayout.text.toString().trim().toLowerCase().equals("azul") || !categoriaLayout.text.toString().trim().toLowerCase().equals("rojo") || !categoriaLayout.text.toString().trim().toLowerCase().equals("verde") ) {
-
-                categoriaLayout.setError("Categoria incorrecta")
-
             }else{
                 var generated_id:String?=db_ref.child("Cartas").push().key
 
@@ -84,7 +104,7 @@ class Add_carta : AppCompatActivity(), CoroutineScope {
                         generated_id,
                         nombreLayout.text.toString().trim().capitalize(),
                         precioLayout.text.toString().trim().capitalize(),
-                        categoriaLayout.text.toString().trim().capitalize(),
+                        categoria!!,
                         stockLayout.text.toString().trim().capitalize(),
                         url_photo_firebase
                     )

@@ -48,7 +48,10 @@ class HomeFragmentCliente : Fragment() {
                     snapshot.children.forEach { hijo: DataSnapshot?
                         ->
                         val pojo_carta = hijo?.getValue(Carta::class.java)
-                        lista.add(pojo_carta!!)
+
+                        if (pojo_carta!!.stock.toInt() > 0) {
+                            lista.add(pojo_carta!!)
+                        }
                     }
                     recycler.adapter?.notifyDataSetChanged()
                 }
