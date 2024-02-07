@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="20dp"
+    app:cardElevation="@dimen/cardview_compat_inset_shadow"
+    android:padding="20dp"
+    app:layout_constraintWidth_percent="0.5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/id_pedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Id Pedido"
+            android:maxLines="2"
+            android:padding="15dp"
+            />
+            <TextView
+                android:id="@+id/name_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/id_pedido"
+                android:text="Nombre"
+                android:maxLines="1"
+                android:padding="15dp"
+                />
+            <TextView
+                android:id="@+id/precio_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_item"
+                android:text="Precio"
+                android:maxLines="1"
+                android:padding="15dp"
+                />
+            <TextView
+                android:id="@+id/estado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/precio_item"
+                android:text="estado"
+                android:maxLines="1"
+                android:padding="15dp"
+                />
+
+                <ImageView
+                    android:id="@+id/estado_foto"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:foregroundGravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/pendiente"
+                    android:adjustViewBounds="true"
+                    />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

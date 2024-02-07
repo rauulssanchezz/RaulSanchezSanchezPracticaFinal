@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.Carta
 import com.example.practicafinal.CartaAdaptador
+import com.example.practicafinal.Pedido
+import com.example.practicafinal.PedidoAdaptador
 import com.example.practicafinal.R
 import com.example.practicafinal.activities.Autor
 import com.example.practicafinal.activities.MainActivity
@@ -27,8 +29,8 @@ class PedidosFragmentCliente : Fragment(){
 
     private var _binding: FragmentPedidosClienteBinding? = null
     private lateinit var recycler: RecyclerView
-    private lateinit var lista: MutableList<Carta>
-    private lateinit var adaptador: CartaAdaptador
+    private lateinit var listaPedidos: MutableList<Pedido>
+    private lateinit var adaptador: PedidoAdaptador
     private var applicationcontext = this.context
     private lateinit var db_ref: DatabaseReference
     override fun onCreateView(
@@ -40,18 +42,17 @@ class PedidosFragmentCliente : Fragment(){
 
         var user = FirebaseAuth.getInstance()
         db_ref= FirebaseDatabase.getInstance().reference
-        lista = mutableListOf()
+        listaPedidos = mutableListOf()
 
-        db_ref.child("Compras")
+        db_ref.child("Pedidos")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    lista.clear()
+                    listaPedidos.clear()
                     snapshot.children.forEach { hijo: DataSnapshot?
                         ->
-                        val pojo_carta = hijo?.getValue(Carta::class.java)
-
-                        if (pojo_carta!!.idComprador == user.currentUser?.uid) {
-                            lista.add(pojo_carta!!)
+                        val pojo_pedido = hijo?.getValue(Pedido::class.java)
+                        if (pojo_pedido!!.id_cliente == user.currentUser?.uid.toString()) {
+                            listaPedidos.add(pojo_pedido)
                         }
                     }
                     recycler.adapter?.notifyDataSetChanged()
@@ -90,7 +91,7 @@ class PedidosFragmentCliente : Fragment(){
             popupMenu.show()
         }
 
-        adaptador = CartaAdaptador(lista)
+        adaptador = PedidoAdaptador(listaPedidos)
         recycler = _binding!!.recyclerView
         recycler.adapter = adaptador
         recycler.layoutManager = LinearLayoutManager(applicationcontext)

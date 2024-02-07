@@ -80,6 +80,10 @@ class Utilidades {
             dtb_ref.child("Cartas").child(carta.id).setValue(carta)
         }
 
+        fun crearPedido(dtb_ref:DatabaseReference,pedido: Pedido){
+            dtb_ref.child("Pedidos").child(pedido.id).setValue(pedido)
+        }
+
         fun crearEvento(dtb_ref:DatabaseReference,evento: Evento){
             dtb_ref.child("Eventos").child(evento.id).setValue(evento)
         }

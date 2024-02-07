@@ -11,7 +11,4 @@ data class Carta (
         var categoria:String="",
         var stock:String="0",
         var imagen:String="",
-        var comprada:Boolean=false,
-        var procesada:Boolean=false,
-        var idComprador:String=""
 ) : Parcelable

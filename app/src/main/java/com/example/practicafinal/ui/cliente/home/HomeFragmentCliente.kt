@@ -156,7 +156,7 @@ class HomeFragmentCliente : Fragment() {
                         val pojo_carta = hijo?.getValue(Carta::class.java)
 
                         if (pojo_carta!!.stock.toInt() > 0) {
-                            lista.add(pojo_carta!!)
+                            lista.add(pojo_carta)
                         }
                     }
                     if (boolean){
