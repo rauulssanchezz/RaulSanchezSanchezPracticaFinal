@@ -51,10 +51,17 @@ class PedidosFragmentCliente : Fragment(){
                     snapshot.children.forEach { hijo: DataSnapshot?
                         ->
                         val pojo_pedido = hijo?.getValue(Pedido::class.java)
-                        if (pojo_pedido!!.id_cliente == user.currentUser?.uid.toString()) {
+                        println(pojo_pedido!!.id_cliente)
+                        println(user.currentUser?.uid.toString())
+                        if (pojo_pedido!!.id_cliente.equals(user.currentUser?.uid.toString().trim())) {
+                            println("entra")
                             listaPedidos.add(pojo_pedido)
+                        }else{
+                            println("no entra")
+
                         }
                     }
+                    println(listaPedidos)
                     recycler.adapter?.notifyDataSetChanged()
                 }
 
@@ -91,6 +98,7 @@ class PedidosFragmentCliente : Fragment(){
             popupMenu.show()
         }
 
+        println(listaPedidos)
         adaptador = PedidoAdaptador(listaPedidos)
         recycler = _binding!!.recyclerView
         recycler.adapter = adaptador

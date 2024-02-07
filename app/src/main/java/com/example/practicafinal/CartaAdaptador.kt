@@ -70,7 +70,7 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
                 val id = db_ref.push().key
                 actual_item.stock=(actual_item.stock.toInt()-1).toString()
                 db_ref.child("Cartas").child(actual_item.id).setValue(actual_item)
-                val pedido=Pedido(id!!, user!!.toString(), actual_item.id, "pendiente", actual_item.precio, actual_item.nombre)
+                val pedido=Pedido(id!!, user!!, actual_item.id, "pendiente", actual_item.precio, actual_item.nombre)
                 Utilidades.crearPedido(db_ref, pedido)
             }
 

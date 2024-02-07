@@ -23,7 +23,7 @@
             android:padding="15dp"
             />
             <TextView
-                android:id="@+id/name_item"
+                android:id="@+id/name_item_pedido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,28 +33,28 @@
                 android:padding="15dp"
                 />
             <TextView
-                android:id="@+id/precio_item"
+                android:id="@+id/precio_item_pedido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name_item"
+                app:layout_constraintTop_toBottomOf="@id/name_item_pedido"
                 android:text="Precio"
                 android:maxLines="1"
                 android:padding="15dp"
                 />
             <TextView
-                android:id="@+id/estado"
+                android:id="@+id/estado_pedido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/precio_item"
+                app:layout_constraintTop_toBottomOf="@id/precio_item_pedido"
                 android:text="estado"
                 android:maxLines="1"
                 android:padding="15dp"
                 />
 
                 <ImageView
-                    android:id="@+id/estado_foto"
+                    android:id="@+id/estado_foto_pedido"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"

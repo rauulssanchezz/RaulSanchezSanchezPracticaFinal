@@ -19,10 +19,10 @@ class PedidoAdaptador(private val lista:MutableList<Pedido>) : RecyclerView.Adap
     private lateinit var context: Context
     private var filter_list=lista
     class PedidoViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        val nombre=item.findViewById<TextView>(R.id.name_item)
-        val precio=item.findViewById<TextView>(R.id.precio_item)
-        val estado=item.findViewById<TextView>(R.id.estado)
-        val estadoFoto=item.findViewById<ImageView>(R.id.estado_foto)
+        val nombre=item.findViewById<TextView>(R.id.name_item_pedido)
+        val precio=item.findViewById<TextView>(R.id.precio_item_pedido)
+        val estado=item.findViewById<TextView>(R.id.estado_pedido)
+        val estadoFoto=item.findViewById<ImageView>(R.id.estado_foto_pedido)
         val id=item.findViewById<TextView>(R.id.id_pedido)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PedidoViewHolder {
