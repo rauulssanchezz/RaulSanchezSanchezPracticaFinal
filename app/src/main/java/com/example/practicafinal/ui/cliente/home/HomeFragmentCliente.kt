@@ -49,7 +49,7 @@ class HomeFragmentCliente : Fragment() {
         recycler.adapter = adaptador
         recycler.layoutManager = LinearLayoutManager(applicationcontext)
 
-        _binding!!.filtrar.setOnClickListener {
+        _binding!!.filtrarCard.setOnClickListener {
             val popupMenu = PopupMenu(context, it)
 
             popupMenu.inflate(R.menu.filtrar_menu)
@@ -57,8 +57,7 @@ class HomeFragmentCliente : Fragment() {
             popupMenu.setOnMenuItemClickListener {item ->
                 when(item.itemId){
                     R.id.nombre -> {
-                        lista.sortBy { it.nombre  }
-                        cargarCartas()
+                        cargarCartas(true)
                         true
                     }
 
@@ -147,7 +146,7 @@ class HomeFragmentCliente : Fragment() {
         recycler.adapter?.notifyDataSetChanged()
     }
 
-    private fun cargarCartas(){
+    private fun cargarCartas(boolean: Boolean=false){
         db_ref.child("Cartas")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -159,6 +158,9 @@ class HomeFragmentCliente : Fragment() {
                         if (pojo_carta!!.stock.toInt() > 0) {
                             lista.add(pojo_carta!!)
                         }
+                    }
+                    if (boolean){
+                        lista.sortBy { it.nombre }
                     }
                     recycler.adapter?.notifyDataSetChanged()
                 }

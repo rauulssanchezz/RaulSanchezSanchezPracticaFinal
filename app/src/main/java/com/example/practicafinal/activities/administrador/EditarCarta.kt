@@ -63,8 +63,6 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
         stock.setText(carta.stock)
         categoriaLayout = findViewById(R.id.add_categoria)
         array = resources.getStringArray(R.array.categorias)
-        pos = array.indexOf(carta.categoria)
-        categoriaLayout.setSelection(pos)
         guardar = findViewById(R.id.guardar)
         photo = findViewById(R.id.add_image)
 
@@ -88,6 +86,8 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner.
             categoriaLayout.adapter = adapter
+            pos = array.indexOf(carta.categoria)
+            categoriaLayout.setSelection(pos)
         }
 
         categoriaLayout.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
@@ -97,7 +97,6 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // write code to perform some action
             }
         }
 
