@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 
-class PedidoAdaptador(private val lista:MutableList<Pedido>) : RecyclerView.Adapter<PedidoAdaptador.PedidoViewHolder>(),
+class PedidosAdaptador(private val lista:MutableList<Pedido>) : RecyclerView.Adapter<PedidosAdaptador.PedidoViewHolder>(),
     Filterable {
 
     private lateinit var context: Context

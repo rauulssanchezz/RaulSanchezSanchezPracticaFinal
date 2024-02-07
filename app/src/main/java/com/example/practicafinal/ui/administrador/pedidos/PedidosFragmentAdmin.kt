@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.Carta
 import com.example.practicafinal.CartaAdaptador
 import com.example.practicafinal.Pedido
-import com.example.practicafinal.PedidoAdaptador
+import com.example.practicafinal.PedidosAdaptador
 import com.example.practicafinal.R
 import com.example.practicafinal.activities.Autor
 import com.example.practicafinal.activities.MainActivity
@@ -30,7 +30,7 @@ class PedidosFragmentAdmin : Fragment(){
     private var _binding: FragmentPedidosAdminBinding? = null
     private lateinit var recycler: RecyclerView
     private lateinit var lista: MutableList<Pedido>
-    private lateinit var adaptador: PedidoAdaptador
+    private lateinit var adaptador: PedidosAdaptador
     private var applicationcontext = this.context
     private lateinit var db_ref: DatabaseReference
     override fun onCreateView(
@@ -90,7 +90,7 @@ class PedidosFragmentAdmin : Fragment(){
             popupMenu.show()
         }
 
-        adaptador = PedidoAdaptador(lista)
+        adaptador = PedidosAdaptador(lista)
         recycler = _binding!!.recyclerView
         recycler.adapter = adaptador
         recycler.layoutManager = LinearLayoutManager(applicationcontext)
