@@ -24,9 +24,9 @@ class Utilidades {
 
     companion object{
 
-        fun crearUsuario(email:String, password:String, nombre:String){
+        fun crearUsuario(email:String, password:String, nombre:String,img:String=""){
             var dtb_ref= FirebaseDatabase.getInstance().reference
-            val usuario=Usuario(nombre, email, password)
+            val usuario=Usuario(FirebaseAuth.getInstance().currentUser!!.uid,nombre, email, password,"cliente",img)
             dtb_ref.child("Usuarios").child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(usuario)
         }
 
@@ -88,7 +88,7 @@ class Utilidades {
             dtb_ref.child("Eventos").child(evento.id).setValue(evento)
         }
 
-        suspend fun guardarFoto(id: String, image: Uri): String {
+        suspend fun guardarFotoCarta(id: String, image: Uri): String {
             lateinit var url_photo_firebase: Uri
             var sto_ref: StorageReference = FirebaseStorage.getInstance().reference
             url_photo_firebase = sto_ref.child("Cartas").child("photos").child(id)
@@ -101,6 +101,15 @@ class Utilidades {
             lateinit var url_photo_firebase: Uri
             var sto_ref: StorageReference = FirebaseStorage.getInstance().reference
             url_photo_firebase = sto_ref.child("Eventos").child("photos").child(id)
+                .putFile(image).await().storage.downloadUrl.await()
+
+            return url_photo_firebase.toString()
+        }
+
+        suspend fun guardarFotoUsuario(image: Uri): String {
+            lateinit var url_photo_firebase: Uri
+            var sto_ref: StorageReference = FirebaseStorage.getInstance().reference
+            url_photo_firebase = sto_ref.child("Usuarios").child("photos").child(FirebaseAuth.getInstance().currentUser!!.uid)
                 .putFile(image).await().storage.downloadUrl.await()
 
             return url_photo_firebase.toString()

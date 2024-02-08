@@ -46,7 +46,7 @@ class CartaAdaptador(private val lista:MutableList<Carta>): RecyclerView.Adapter
         val actual_item=filter_list[position]
         holder.nombre.text=actual_item.nombre
         holder.categoria.text="Categoria: "+actual_item.categoria
-        holder.precio.text="Precio: "+actual_item.precio
+        holder.precio.text="Precio: "+actual_item.precio+" €"
         holder.stock.text="Stock: "+actual_item.stock
 
         val URL:String? = when (actual_item.imagen){

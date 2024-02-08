@@ -36,7 +36,7 @@ class PedidosAdaptador(private val lista:MutableList<Pedido>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: PedidoViewHolder, position: Int) {
         val actual_item=filter_list[position]
         holder.nombre.text="Nombre carta: "+actual_item.nombre
-        holder.precio.text="Precio: "+actual_item.precio
+        holder.precio.text="Precio: "+actual_item.precio+" €"
         holder.estado.text="Estado: "+actual_item.estado
         holder.id.text=actual_item.id
 

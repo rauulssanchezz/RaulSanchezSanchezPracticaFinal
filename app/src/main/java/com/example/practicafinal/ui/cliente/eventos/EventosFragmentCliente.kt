@@ -47,7 +47,9 @@ class EventosFragmentCliente : Fragment() {
                     snapshot.children.forEach { hijo: DataSnapshot?
                         ->
                         val pojo_evento = hijo?.getValue(Evento::class.java)
-                        lista.add(pojo_evento!!)
+                        if (pojo_evento!!.aforo_maximo.toInt()-pojo_evento!!.aforo.toInt()>0) {
+                            lista.add(pojo_evento!!)
+                        }
                     }
                     recycler.adapter?.notifyDataSetChanged()
                 }

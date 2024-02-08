@@ -101,7 +101,7 @@ class EditEventos : AppCompatActivity() , CoroutineScope {
                         url_photo_firebase = evento.imagen!!
                     } else {
                         url_photo_firebase =
-                            Utilidades.guardarFoto(evento.id!!, url_photo!!)
+                            Utilidades.guardarFotoEvento(evento.id!!, url_photo!!)
                     }
 
                     var evento = Evento(

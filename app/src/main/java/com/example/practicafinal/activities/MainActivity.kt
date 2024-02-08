@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                     ) {
                         db_ref.child("Pedidos").child(pojo.id!!)
                             .child("not_state").setValue(Estado_not.notificado)
+                        if (pojo.id_cliente==auth.currentUser?.uid)
                         generateNotification(
                             generator.incrementAndGet(),
                             pojo,
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity() {
             .setContentTitle(tittle)
             .setContentText(content)
             .setSubText("sistema de informacion")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setContentIntent(pedingIntent)
             .setAutoCancel(true)
             .build()
@@ -160,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         val name = "basic_channel"
         var id = "test_channel"
         val description = "basic notification"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val importance = NotificationManager.IMPORTANCE_HIGH
 
         val channel = NotificationChannel(id, name, importance).apply {
             this.description = description

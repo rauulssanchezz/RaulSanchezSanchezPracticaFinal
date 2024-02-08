@@ -16,6 +16,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.practicafinal.activities.administrador.EditEventos
+import com.example.practicafinal.activities.administrador.EventoInfo
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
@@ -29,7 +31,9 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
         val nombre=item.findViewById<TextView>(R.id.name_item_evento)
         val precio=item.findViewById<TextView>(R.id.precio_item_evento)
         val fecha=item.findViewById<TextView>(R.id.fecha_item_evento)
-        val aforo=item.findViewById<TextView>(R.id.aforo_item_evento)
+        val aforoMax=item.findViewById<TextView>(R.id.aforo_item_evento)
+        val aforoAct=item.findViewById<TextView>(R.id.aforo_actual_item_evento)
+        val apuntarse=item.findViewById<ImageView>(R.id.estado_evento)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventoViewHolder {
         val item_view =
@@ -43,7 +47,8 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
         holder.nombre.text=actual_item.nombre
         holder.fecha.text="Fecha: "+actual_item.fecha
         holder.precio.text="Precio: "+actual_item.precio
-        holder.aforo.text="Aforo: "+actual_item.aforo_maximo
+        holder.aforoMax.text="Aforo Máximo: "+actual_item.aforo_maximo
+        holder.aforoAct.text="Aforo Actual: "+actual_item.aforo
 
         val URL:String? = when (actual_item.imagen){
             ""->null
@@ -57,7 +62,26 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
             holder.itemView.setOnLongClickListener {
                 false
             }
+
+            holder.apuntarse.setOnClickListener {
+                var db_ref = FirebaseDatabase.getInstance().reference
+                val inscripcion=Inscripcion(actual_item.id,FirebaseAuth.getInstance().currentUser!!.uid)
+                var id=db_ref.push().key
+                db_ref.child("Inscripciones").child(id!!).setValue(inscripcion)
+                actual_item.aforo=(actual_item.aforo.toInt()+1).toString()
+                db_ref.child("Eventos").child(actual_item.id).setValue(actual_item)
+                holder.apuntarse.setImageResource(R.drawable.confirmada)
+            }
+
         }else {
+
+            holder.apuntarse.visibility=View.GONE
+
+            holder.itemView.setOnClickListener {
+                var newIntent=Intent(context, EventoInfo::class.java)
+                newIntent.putExtra("evento",actual_item)
+                context.startActivity(newIntent)
+            }
 
             holder.itemView.setOnLongClickListener {
                 val popup = PopupMenu(context, holder.itemView)

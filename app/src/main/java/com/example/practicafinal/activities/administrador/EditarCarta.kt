@@ -132,7 +132,7 @@ class EditarCarta : AppCompatActivity(), CoroutineScope {
                         url_photo_firebase = carta.imagen!!
                     } else {
                         url_photo_firebase =
-                            Utilidades.guardarFoto(carta.id!!, url_photo!!)
+                            Utilidades.guardarFotoCarta(carta.id!!, url_photo!!)
                     }
 
                     var carta = Carta(

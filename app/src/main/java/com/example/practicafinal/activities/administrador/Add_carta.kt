@@ -98,7 +98,7 @@ class Add_carta : AppCompatActivity(), CoroutineScope {
 
 
                 launch {
-                    val url_photo_firebase= Utilidades.guardarFoto(generated_id!!, url_photo!!)
+                    val url_photo_firebase= Utilidades.guardarFotoCarta(generated_id!!, url_photo!!)
 
                     var carta= Carta(
                         generated_id,
