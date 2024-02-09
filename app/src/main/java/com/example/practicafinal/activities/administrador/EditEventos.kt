@@ -60,6 +60,10 @@ class EditEventos : AppCompatActivity() , CoroutineScope {
 
         photo = findViewById(R.id.add_image)
 
+        fecha.setOnClickListener {
+            showDatePickerDialog()
+        }
+
         Glide.with(applicationContext)
             .load(evento.imagen)
             .apply(Utilidades.glideOptions(applicationContext))
@@ -132,6 +136,15 @@ class EditEventos : AppCompatActivity() , CoroutineScope {
 
             }
         }
+    }
+
+    private fun showDatePickerDialog(){
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "datePicker")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        fecha.setText("$day del $month del año $year")
     }
 
     override fun onDestroy() {

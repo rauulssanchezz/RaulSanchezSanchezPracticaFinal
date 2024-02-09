@@ -51,8 +51,11 @@
                 app:layout_constraintTop_toBottomOf="@id/add_name"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="30dp"
+                android:focusable="false"
+                android:clickable="false"
                 android:hint="Fecha"
                 android:inputType="date"
+                style="@style/DatePickerTheme"
                 />
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_precio"

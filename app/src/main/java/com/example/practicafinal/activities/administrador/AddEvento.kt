@@ -50,6 +50,10 @@ class AddEvento : AppCompatActivity(), CoroutineScope {
 
         add=findViewById(R.id.guardar)
 
+        fechaLayout.setOnClickListener {
+            showDatePickerDialog()
+        }
+
         db_ref= FirebaseDatabase.getInstance().reference
         st_ref = FirebaseStorage.getInstance().reference
 
@@ -106,6 +110,14 @@ class AddEvento : AppCompatActivity(), CoroutineScope {
         }
     }
 
+    private fun showDatePickerDialog(){
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "datePicker")
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        fechaLayout.setText("$day del $month del año $year")
+    }
     override fun onDestroy() {
         job.cancel()
         super.onDestroy()
