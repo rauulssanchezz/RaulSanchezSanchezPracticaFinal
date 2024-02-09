@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.practicafinal.R
-import com.example.practicafinal.activities.administrador.InicioAdmin
 
 class Autor : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

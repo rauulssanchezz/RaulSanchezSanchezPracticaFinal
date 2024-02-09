@@ -1,24 +1,15 @@
 package com.example.practicafinal
 
 import android.content.Context
-import android.content.Intent
-import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
-import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.practicafinal.activities.administrador.EditEventos
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 
 class UsuarioAdaptador(private var lista:MutableList<Usuario>) : RecyclerView.Adapter<UsuarioAdaptador.UsuarioViewHolder>(),
     Filterable {

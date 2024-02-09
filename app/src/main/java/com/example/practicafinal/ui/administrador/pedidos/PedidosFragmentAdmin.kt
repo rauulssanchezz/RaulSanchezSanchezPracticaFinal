@@ -9,15 +9,12 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.practicafinal.Carta
-import com.example.practicafinal.CartaAdaptador
 import com.example.practicafinal.Pedido
 import com.example.practicafinal.PedidosAdaptador
 import com.example.practicafinal.R
 import com.example.practicafinal.activities.Autor
 import com.example.practicafinal.activities.MainActivity
 import com.example.practicafinal.databinding.FragmentPedidosAdminBinding
-import com.example.practicafinal.databinding.FragmentPedidosClienteBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
