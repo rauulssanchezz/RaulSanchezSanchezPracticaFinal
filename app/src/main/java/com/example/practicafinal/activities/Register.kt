@@ -97,9 +97,11 @@ class Register : AppCompatActivity(),CoroutineScope {
                                 user = auth.currentUser
                                 launch {
                                     if (url_photo!=null) {
-                                        Utilidades.guardarFotoUsuario(url_photo!!)
+                                        val url_img=Utilidades.guardarFotoUsuario(url_photo!!)
+                                        Utilidades.crearUsuario(email, password, nombre,url_img)
+                                    }else{
+                                        Utilidades.crearUsuario(email, password, nombre,"")
                                     }
-                                    Utilidades.crearUsuario(email, password, nombre,)
                                     finish()
                                 }
                             } else {

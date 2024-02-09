@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
             .setContentTitle(tittle)
             .setContentText(content)
             .setSubText("sistema de informacion")
-            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pedingIntent)
             .setAutoCancel(true)
             .build()
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         val name = "basic_channel"
         var id = "test_channel"
         val description = "basic notification"
-        val importance = NotificationManager.IMPORTANCE_HIGH
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
 
         val channel = NotificationChannel(id, name, importance).apply {
             this.description = description

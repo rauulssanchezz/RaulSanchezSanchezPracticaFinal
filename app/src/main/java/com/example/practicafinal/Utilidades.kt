@@ -24,7 +24,7 @@ class Utilidades {
 
     companion object{
 
-        fun crearUsuario(email:String, password:String, nombre:String,img:String=""){
+        fun crearUsuario(email:String, password:String, nombre:String,img:String){
             var dtb_ref= FirebaseDatabase.getInstance().reference
             val usuario=Usuario(FirebaseAuth.getInstance().currentUser!!.uid,nombre, email, password,"cliente",img)
             dtb_ref.child("Usuarios").child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(usuario)

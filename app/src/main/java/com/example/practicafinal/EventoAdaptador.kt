@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
-class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adapter<EventoAdaptador.EventoViewHolder>(),
+class EventoAdaptador(private var lista:MutableList<Evento>,private var inscripciones:MutableList<Inscripcion>?=null) : RecyclerView.Adapter<EventoAdaptador.EventoViewHolder>(),
     Filterable {
 
     private lateinit var context: Context
@@ -44,6 +44,10 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: EventoViewHolder, position: Int) {
         val actual_item=filter_list[position]
+        var inscripcion:Inscripcion?=Inscripcion()
+        if (inscripciones!=null){
+            inscripcion=inscripciones!!.find { it.id_evento.equals(actual_item.id) }
+        }
         holder.nombre.text=actual_item.nombre
         holder.fecha.text="Fecha: "+actual_item.fecha
         holder.precio.text="Precio: "+actual_item.precio
@@ -58,20 +62,29 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
         var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         var tipo = sharedPreferences.getString("tipo", "cliente")
 
-        if (tipo.equals("cliente",true)){
+        if (tipo.equals("cliente",true)) {
             holder.itemView.setOnLongClickListener {
                 false
             }
 
-            holder.apuntarse.setOnClickListener {
-                var db_ref = FirebaseDatabase.getInstance().reference
-                val inscripcion=Inscripcion(actual_item.id,FirebaseAuth.getInstance().currentUser!!.uid)
-                var id=db_ref.push().key
-                db_ref.child("Inscripciones").child(id!!).setValue(inscripcion)
-                actual_item.aforo=(actual_item.aforo.toInt()+1).toString()
-                db_ref.child("Eventos").child(actual_item.id).setValue(actual_item)
+            if (inscripcion!=null && inscripcion.id_evento.equals(actual_item.id,true) && inscripcion.id_ususario.equals(
+                    FirebaseAuth.getInstance().currentUser!!.uid,true
+                )
+            ){
                 holder.apuntarse.setImageResource(R.drawable.confirmada)
+        }else {
+                holder.apuntarse.setOnClickListener {
+                    var db_ref = FirebaseDatabase.getInstance().reference
+                    var id = db_ref.push().key
+                    val inscripcion =
+                        Inscripcion(id!!,actual_item.id, FirebaseAuth.getInstance().currentUser!!.uid)
+                    db_ref.child("Inscripciones").child(id!!).setValue(inscripcion)
+                    actual_item.aforo = (actual_item.aforo.toInt() + 1).toString()
+                    db_ref.child("Eventos").child(actual_item.id).setValue(actual_item)
+                    holder.apuntarse.setImageResource(R.drawable.confirmada)
+                }
             }
+
 
         }else {
 
@@ -105,6 +118,12 @@ class EventoAdaptador(private var lista:MutableList<Evento>) : RecyclerView.Adap
                             sto_ref.child("Eventos").child("photos").child(actual_item.id!!)
                                 .delete()
                             db_ref.child("Eventos").child(actual_item.id!!).removeValue()
+
+                            if (inscripciones!=null){
+                                inscripciones!!.remove(inscripcion)
+                                db_ref.child("Inscripciones").child(inscripcion!!.id).removeValue()
+                            }
+
                             Toast.makeText(context, "Evento borrado con exito", Toast.LENGTH_SHORT)
                                 .show()
                             true

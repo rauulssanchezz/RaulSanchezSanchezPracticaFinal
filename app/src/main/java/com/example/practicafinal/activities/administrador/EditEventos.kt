@@ -109,6 +109,7 @@ class EditEventos : AppCompatActivity() , CoroutineScope {
                         nombre.text.toString().trim().capitalize(),
                         fecha.text.toString().trim(),
                         precio.text.toString().trim().capitalize(),
+                        "0",
                         aforo.text.toString().trim(),
                         url_photo_firebase,
 

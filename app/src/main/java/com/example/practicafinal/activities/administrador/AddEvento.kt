@@ -81,6 +81,7 @@ class AddEvento : AppCompatActivity(), CoroutineScope {
                         nombreLayout.text.toString().trim().capitalize(),
                         fechaLayout.text.toString().trim().capitalize(),
                         precioLayout.text.toString().trim().capitalize(),
+                        "0",
                         aforoLayout.text.toString().trim().capitalize(),
                         url_photo_firebase
                     )
