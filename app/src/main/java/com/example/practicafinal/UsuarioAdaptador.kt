@@ -40,8 +40,6 @@ class UsuarioAdaptador(private var lista:MutableList<Usuario>) : RecyclerView.Ad
     override fun onBindViewHolder(holder: UsuarioViewHolder, position: Int) {
 
         val actual_item=filter_list[position]
-        println(position)
-        println(actual_item)
         holder.nombre.text=actual_item.nombre
 
         val URL:String? = when (actual_item.img){
