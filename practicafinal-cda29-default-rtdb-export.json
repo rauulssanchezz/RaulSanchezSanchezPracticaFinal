@@ -1,0 +1,184 @@
+{
+  "Cartas": {
+    "-NpxIROTEE8uS6ayjaE7": {
+      "categoria": "Blanco",
+      "id": "-NpxIROTEE8uS6ayjaE7",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-NpxIROTEE8uS6ayjaE7?alt=media&token=8486d304-7663-4766-a2d3-f529b6d35c85",
+      "nombre": "Carta2",
+      "precio": "55",
+      "stock": "59"
+    },
+    "-NpxIZJLnEqSjS1qdVT1": {
+      "categoria": "Blanco",
+      "id": "-NpxIZJLnEqSjS1qdVT1",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-NpxIZJLnEqSjS1qdVT1?alt=media&token=0c0728ff-63f8-45d4-81e5-1e146518fab2",
+      "nombre": "No nunca beibi",
+      "precio": "3.99",
+      "stock": "0"
+    },
+    "-NpxIfrstpMOJoquLgFG": {
+      "categoria": "Verde",
+      "id": "-NpxIfrstpMOJoquLgFG",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-NpxIfrstpMOJoquLgFG?alt=media&token=ea7ef90a-877f-483a-9531-1a1fc4551723",
+      "nombre": "Como se sinete como se siente",
+      "precio": "1",
+      "stock": "187"
+    },
+    "-Nq1pXrFoxkN30oqTItr": {
+      "categoria": "Blanco",
+      "comprada": false,
+      "id": "-Nq1pXrFoxkN30oqTItr",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-Nq1pXrFoxkN30oqTItr?alt=media&token=abc49e8f-55fd-495a-8ab4-c71ac36b3534",
+      "nombre": "Carta1",
+      "precio": "50",
+      "stability": 0,
+      "stock": "5"
+    },
+    "-Nq1rh_ToWDkjA6DxTKP": {
+      "categoria": "Rojo",
+      "id": "-Nq1rh_ToWDkjA6DxTKP",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-Nq1rh_ToWDkjA6DxTKP?alt=media&token=c96b1d1b-e5db-4861-8fa8-62067be57b84",
+      "nombre": "Carta3",
+      "precio": "20",
+      "stock": "19"
+    },
+    "-Nq1vCfm6OScVQyuHUG2": {
+      "categoria": "Azul",
+      "id": "-Nq1vCfm6OScVQyuHUG2",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-Nq1vCfm6OScVQyuHUG2?alt=media&token=981bda98-35ef-4bf4-9079-6e70df5b6adc",
+      "nombre": "Carta4",
+      "precio": "100",
+      "stability": 0,
+      "stock": "2"
+    },
+    "-Nq25b_ckGgXScegiovf": {
+      "categoria": "Blanco",
+      "id": "-Nq25b_ckGgXScegiovf",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-Nq25b_ckGgXScegiovf?alt=media&token=6061044c-ada2-4c49-8e70-5de934c575d2",
+      "nombre": "Carta5",
+      "precio": "50",
+      "stock": "100"
+    },
+    "-Nq26eZnKXVqEXxgDNjb": {
+      "categoria": "Negro",
+      "id": "-Nq26eZnKXVqEXxgDNjb",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Cartas%2Fphotos%2F-Nq26eZnKXVqEXxgDNjb?alt=media&token=9fba8356-6aa2-4852-8332-86e673088ef0",
+      "nombre": "Carta6",
+      "precio": "50",
+      "stability": 0,
+      "stock": "2"
+    }
+  },
+  "Eventos": {
+    "-NqDtRhO1eAiZkszjXXU": {
+      "aforo": "1",
+      "aforo_maximo": "700",
+      "fecha": "08/05/2024",
+      "id": "-NqDtRhO1eAiZkszjXXU",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Eventos%2Fphotos%2F-NqDtRhO1eAiZkszjXXU?alt=media&token=aa317b41-8ba4-4416-8a0d-78d9ae46dc29",
+      "nombre": "Evento1",
+      "precio": "200"
+    },
+    "-NqDtgvaIRMs2F7A8LHv": {
+      "aforo": "0",
+      "aforo_maximo": "100",
+      "fecha": "29 del 1 del año 2024",
+      "id": "-NqDtgvaIRMs2F7A8LHv",
+      "imagen": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Eventos%2Fphotos%2F-NqDtgvaIRMs2F7A8LHv?alt=media&token=2a41cc25-076d-47ef-837c-0bc501c0cb6d",
+      "nombre": "Evento 2",
+      "precio": "700"
+    }
+  },
+  "Inscripciones": {
+    "-NqDtVa2XLmCCXpSIVry": {
+      "id": "-NqDtVa2XLmCCXpSIVry",
+      "id_evento": "-NqDtRhO1eAiZkszjXXU",
+      "id_ususario": "DAbF3foeOOYdAUhCPQGVjV2TUgv2"
+    },
+    "-NqEIzlIjZ1_n5pJ7lPg": {
+      "id": "-NqEIzlIjZ1_n5pJ7lPg",
+      "id_evento": "-NqDtgvaIRMs2F7A8LHv",
+      "id_ususario": "DAbF3foeOOYdAUhCPQGVjV2TUgv2"
+    }
+  },
+  "Pedidos": {
+    "-NqDtnt1mNVbI02tSM7W": {
+      "estado": "confirmada",
+      "id": "-NqDtnt1mNVbI02tSM7W",
+      "id_cliente": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "id_producto": "-NpxIZJLnEqSjS1qdVT1",
+      "nombre": "No nunca beibi",
+      "not_state": 0,
+      "precio": "3.99",
+      "userNotifications": "33fd700812eeb69e"
+    },
+    "-NqEJ242QcRaEGx2WsTk": {
+      "estado": "confirmada",
+      "id": "-NqEJ242QcRaEGx2WsTk",
+      "id_cliente": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "id_producto": "-NpxIROTEE8uS6ayjaE7",
+      "nombre": "Carta2",
+      "not_state": 0,
+      "precio": "55",
+      "userNotifications": "33fd700812eeb69e"
+    },
+    "-NqEJ4CYB61ms7o2BT1Q": {
+      "estado": "confirmada",
+      "id": "-NqEJ4CYB61ms7o2BT1Q",
+      "id_cliente": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "id_producto": "-NpxIROTEE8uS6ayjaE7",
+      "nombre": "Carta2",
+      "not_state": 0,
+      "precio": "55",
+      "userNotifications": "33fd700812eeb69e"
+    },
+    "-NqEJ7Ioxu_nxw667NT8": {
+      "estado": "confirmada",
+      "id": "-NqEJ7Ioxu_nxw667NT8",
+      "id_cliente": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "id_producto": "-NpxIROTEE8uS6ayjaE7",
+      "nombre": "Carta2",
+      "not_state": 0,
+      "precio": "55",
+      "userNotifications": "33fd700812eeb69e"
+    },
+    "-NqEJD1vrgd6xDtQAnxD": {
+      "estado": "pendiente",
+      "id": "-NqEJD1vrgd6xDtQAnxD",
+      "id_cliente": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "id_producto": "-NpxIZJLnEqSjS1qdVT1",
+      "nombre": "No nunca beibi",
+      "not_state": 0,
+      "precio": "3.99",
+      "userNotifications": "cab71bc8a2313546"
+    },
+    "-NqJ6pwVTNysG1gdNkKn": {
+      "estado": "pendiente",
+      "id": "-NqJ6pwVTNysG1gdNkKn",
+      "id_cliente": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "id_producto": "-NpxIZJLnEqSjS1qdVT1",
+      "nombre": "No nunca beibi",
+      "not_state": 1,
+      "precio": "3.99",
+      "userNotifications": "33fd700812eeb69e"
+    }
+  },
+  "Usuarios": {
+    "DAbF3foeOOYdAUhCPQGVjV2TUgv2": {
+      "contraseña": "misulevis",
+      "email": "raulestudiosdam@gmail.com",
+      "id": "DAbF3foeOOYdAUhCPQGVjV2TUgv2",
+      "img": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Usuarios%2Fphotos%2FDAbF3foeOOYdAUhCPQGVjV2TUgv2?alt=media&token=bf9af23b-f580-47ea-bd89-855ecdc84ff8",
+      "nombre": "Raul",
+      "tipo": "cliente"
+    },
+    "HROehEm2vDfnkmx80VaegsB17133": {
+      "contraseña": "administrador",
+      "email": "administrador@gmail.com",
+      "id": "HROehEm2vDfnkmx80VaegsB17133",
+      "img": "https://firebasestorage.googleapis.com/v0/b/practicafinal-cda29.appspot.com/o/Usuarios%2Fphotos%2FHROehEm2vDfnkmx80VaegsB17133?alt=media&token=d4c2f9f2-68ee-4a6c-b09d-89f812e74bf9",
+      "nombre": "Admin",
+      "tipo": "admin"
+    }
+  }
+}
